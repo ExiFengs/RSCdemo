@@ -88,7 +88,10 @@ public class MianCustomerController {
     public String registerto(String loginname, String password, HttpServletRequest request) {
         Mailcustomer mailcustomer = mailcustomerService.saveMailCustomer(loginname, password);
         request.getSession().setAttribute("mailcustomer", mailcustomer);
-        request.setAttribute("info", "注册成功！");
+        return "MC/register";
+    }
+    @GetMapping("/SuccessRegister")
+    public String Suregisterto() {
         return "MC/Home";
     }
 
