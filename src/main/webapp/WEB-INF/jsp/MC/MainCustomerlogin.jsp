@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>MainCustomerlogin</title>
+    <title>用户首页</title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.css">
     <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
