@@ -90,7 +90,7 @@ public class MianCustomerController {
         request.getSession().setAttribute("mailcustomer", mailcustomer);
         return "MC/register";
     }
-    @GetMapping("/SuccessRegister")
+    @RequestMapping("/SuccessRegister")
     public String Suregisterto() {
         return "MC/Home";
     }
@@ -125,9 +125,26 @@ public class MianCustomerController {
     @PostMapping("/upinfo")
     public
     @ResponseBody
+/*
     String resuleinfo(HttpServletRequest request, String username, String phone, Long woid, String address) {
         Mailcustomer mailcustomer = (Mailcustomer) request.getSession().getAttribute("mailcustomer");
         mailcustomer.setManame(username);
+        mailcustomer.setMaadress(address);
+        mailcustomer.setMaworkingarea(workingareaService.findworkingareaById(woid));
+        mailcustomer.setMaphone(phone);
+        if (mailcustomer.getMarole().getRoid() == 1) {
+            mailcustomer.setMarole(roleService.findRoleById((short) 2));
+        }
+        mailcustomerService.savemailcustomer(mailcustomer);
+        request.getSession().setAttribute("mailcustomer", mailcustomer);
+        return "更改成功！";
+    }
+*/
+    String resuleinfo(HttpServletRequest request,String loginname, String username,String password, String phone, Long woid, String address) {
+        Mailcustomer mailcustomer = (Mailcustomer) request.getSession().getAttribute("mailcustomer");
+        mailcustomer.setMaloginname(loginname);
+        mailcustomer.setManame(username);
+        mailcustomer.setMapassword(password);
         mailcustomer.setMaadress(address);
         mailcustomer.setMaworkingarea(workingareaService.findworkingareaById(woid));
         mailcustomer.setMaphone(phone);

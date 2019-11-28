@@ -54,6 +54,7 @@
     function register() {
         document.myform.action="/user/register";
         document.myform.submit();
+        // window.location.replace("/user/register");
     }
 </script>
 </body>

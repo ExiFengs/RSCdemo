@@ -363,7 +363,7 @@
         var chwork = $("input[name='work']:checked").val();
         var chworkarea = $("#wotown").val();
         if (chworkarea == -1) {
-            alert("请工作人员的工作区域！");
+            alert("请选择工作人员的工作区域！");
             return;
         }
         $.post("/admin/changepost", {

@@ -4,12 +4,12 @@
 <%@ page import="rscdemo.pojo.Workingarea" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
+<%--<%
     Mailcustomer mailcustomer = (Mailcustomer) request.getSession().getAttribute("mailcustomer");
     Role marole = mailcustomer.getMarole();
     List<String> woareas = (List<String>) request.getAttribute("woareas");
     List<Workingarea> workingareas = (List<Workingarea>) request.getAttribute("workingareas");
-%>
+%>--%>
 
 <html>
 <head>
@@ -31,23 +31,40 @@
                 <div class="panel-body">
                     <form class="form-horizontal">
                         <div class="form-group">
+                            <label for="name" class="col-lg-4 text-right control-label">登录姓名：</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="loginname" name="loginname" minlength="2" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="name" class="col-lg-4 text-right control-label">真实姓名：</label>
                             <div class="col-lg-8">
-                                <input type="text" class="form-control" id="name" name="name" minlength="2" required <%if (mailcustomer.getManame()!=null){%>value="<%=mailcustomer.getManame()%>" disabled="disabled"<%}%>>
+                                <input type="text" class="form-control" id="name" name="name" minlength="2" required >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-lg-4 text-right control-label">密码：</label>
+                            <div class="col-lg-8">
+                                <input type="password" class="form-control" id="password" name="password" minlength="2" required >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-lg-4 text-right control-label">确认密码：</label>
+                            <div class="col-lg-8">
+                                <input type="password" class="form-control" id="password1" name="password1" minlength="2" required >
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="phone" class="col-lg-4 text-right control-label">手机号码：</label>
                             <div class="col-lg-8">
-                                <input type="tel" class="form-control text-left" id="phone" name="phone" minlength="11" required
-                                    <%if(mailcustomer.getMaphone()!=null){%>value="<%=mailcustomer.getMaphone()%>"<% }%>>
+                                <input type="tel" class="form-control text-left" id="phone" name="phone" minlength="11" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-lg-offset-4">
-                                <button type="button" class="btn btn-success col-lg-4" onclick="upinfo()">提交</button>
-                                <button type="button" class="btn btn-danger col-lg-4 col-lg-offset-1">取消</button>
+                                <button type="submit" class="btn btn-success col-lg-4" onclick="upinfo()">提交</button>
+                                <button type="reset" class="btn btn-danger col-lg-4 col-lg-offset-1">取消</button>
                             </div>
                         </div>
                     </form>
@@ -60,16 +77,25 @@
 
     function upinfo() {
 
+        var loginname = $("#loginname").val();
         var username = $("#name").val();
+        var password = $("#password").val();
+        var password1 = $("#password1").val();
         var phone = $("#phone").val();
         $.post("/user/upinfo",{
+            loginname:loginname,
             username:username,
+            password:password,
             phone:phone,
         },function (result) {
             alert(result)
             window.location.replace("/user/SuccessRegister");
-
         })
+        if (password!=password1){
+            alert("密码不一致");
+            password1.reset();
+            return;
+        };
     }
 
 </script>
